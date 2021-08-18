@@ -1,6 +1,6 @@
 # MediaWiki Extension AddKeywordsMetaTag
 
-This extension generates `keywords` meta tag header from MediaWiki:Keywords page and `<keywords content=".."/>' tags.
+This extension generates `keywords` meta tag header from MediaWiki:Keywords page and `<keywords content=".."/>` tags.
 
 ## Install
 
