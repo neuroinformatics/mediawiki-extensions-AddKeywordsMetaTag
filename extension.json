@@ -1,12 +1,12 @@
 {
 	"name": "AddKeywordsMetaTag",
-	"version": "3.0.0",
+	"version": "3.1.0",
 	"author": "Yoshihiro Okumura",
 	"url": "https://github.com/neuroinformatics/mediawiki-extensions-AddKeywordsMetaTag",
 	"descriptionmsg": "addkeywordsmetatag-desc",
 	"license-name": "MIT",
 	"requires": {
-		"MediaWiki": ">= 1.31.0"
+		"MediaWiki": ">= 1.35.0"
 	},
 	"type": "parserhook",
 	"MessagesDirs": {
