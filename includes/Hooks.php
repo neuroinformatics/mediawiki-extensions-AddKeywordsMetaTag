@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extension\AddKeywordsMetaTag;
 
+use MediaWiki\Revision\SlotRecord;
+
 class Hooks
 {
     /**
@@ -42,9 +44,9 @@ class Hooks
         }
         // get keywords from MediaWiki:Keywords page.
         $title = \Title::MakeTitle(NS_MEDIAWIKI, 'Keywords');
-        $article = new \Article($title);
-        $revision = $article->getRevision();
-        $content = $revision->getContent(\Revision::RAW);
+        $page = \WikiPage::factory($title);
+        $revision = $page->getRevisionRecord();
+        $content = $revision->getContent(SlotRecord::MAIN);
         foreach (explode(',', \ContentHandler::getContentText($content)) as $keyword) {
             $keyword = trim($keyword);
             if ('' !== $keyword) {
