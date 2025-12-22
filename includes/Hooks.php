@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\AddKeywordsMetaTag;
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 
 class Hooks
@@ -38,13 +39,19 @@ class Hooks
     public static function onOutputPageBeforeHTML(\OutputPage $out, &$text)
     {
         global $action;
+        static $first = true;
+        if (!$first) {
+            return;
+        }
+        $first = false;
         $keywords = [];
         if (in_array($action, ['edit', 'history', 'delete', 'watch'])) {
             return;
         }
         // get keywords from MediaWiki:Keywords page.
         $title = \Title::MakeTitle(NS_MEDIAWIKI, 'Keywords');
-        $page = \WikiPage::factory($title);
+        $factory = MediaWikiServices::getInstance()->getWikiPageFactory();
+        $page = $factory->newFromTitle($title);
         $revision = $page->getRevisionRecord();
         $content = $revision->getContent(SlotRecord::MAIN);
         foreach (explode(',', \ContentHandler::getContentText($content)) as $keyword) {
