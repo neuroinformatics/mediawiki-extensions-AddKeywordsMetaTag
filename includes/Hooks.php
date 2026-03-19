@@ -53,11 +53,15 @@ class Hooks
         $factory = MediaWikiServices::getInstance()->getWikiPageFactory();
         $page = $factory->newFromTitle($title);
         $revision = $page->getRevisionRecord();
-        $content = $revision->getContent(SlotRecord::MAIN);
-        foreach (explode(',', \ContentHandler::getContentText($content)) as $keyword) {
-            $keyword = trim($keyword);
-            if ('' !== $keyword) {
-                $keywords[] = $keyword;
+        if ($revision !== null) {
+            $content = $revision->getContent(SlotRecord::MAIN);
+            if ($content !== null) {
+                foreach (explode(',', $content->getText()) as $keyword) {
+                    $keyword = trim($keyword);
+                    if ('' !== $keyword) {
+                        $keywords[] = $keyword;
+                    }
+                }
             }
         }
         // get keywords from rendered <keywords> tags.
