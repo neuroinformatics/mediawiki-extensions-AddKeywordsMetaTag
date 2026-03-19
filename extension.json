@@ -1,6 +1,6 @@
 {
 	"name": "AddKeywordsMetaTag",
-	"version": "3.2.0",
+	"version": "3.2.1",
 	"author": "Yoshihiro Okumura",
 	"url": "https://github.com/neuroinformatics/mediawiki-extensions-AddKeywordsMetaTag",
 	"descriptionmsg": "addkeywordsmetatag-desc",
